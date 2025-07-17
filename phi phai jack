@@ -121,7 +121,7 @@ SetValue("libanogs.so", 0x368EC0, "00 00 00 00")
 SetValue("libanogs.so", 0x369C40, "00 00 00 00")
 SetValue("libanogs.so", 0x369D40, "00 00 00 00")
 SetValue("libanogs.so", 0x369DA0, "00 00 00 00")
-admin
+
 SetValue("libanogs.so",0x118c4c,"00 00 00 00")
 SetValue("libanogs.so",0x118c50,"00 00 00 00")
 SetValue("libanogs.so",0x1355ec,"00 00 00 00")
