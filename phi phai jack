@@ -92,6 +92,74 @@
         DeleteKey()
     end
 
+local SaveOFF = {}
+
+local function hex2tbl(hex)
+  local ret = {}
+  hex:gsub('%S%S', function(ch)
+    ret[#ret + 1] = ch
+    return ''
+  end)
+  return ret
+end
+
+local function getValues(lib, address, length)
+  local values = {}
+  for i = 1, length do
+    values[i] = {
+      address = lib + address + i - 1,
+      flags = gg.TYPE_BYTE
+    }
+  end
+  return gg.getValues(values)
+end
+
+local function setValues(lib, address, values)
+  local set = {}
+  for i = 1, #values do
+    set[i] = {
+      address = lib + address + i - 1,
+      value = values[i],
+      flags = gg.TYPE_BYTE
+    }
+  end
+  gg.setValues(set)
+  gg.clearResults()
+end
+
+function SetValue(a, b, c)
+  local set = {}
+  local lib = gg.getRangesList(a)[1].start
+  local Hex = hex2tbl(c)
+  
+  local V = {}
+  for i = 1, #Hex do
+    V[i] = tonumber(Hex[i], 16)
+    if V[i] > 127 then
+      V[i] = V[i] - 256
+    end
+  end
+  
+  if not SaveOFF[b] then
+    local Z = {}
+    for i = 1, #Hex do
+      Z[i] = {
+        address = lib + b + i - 1,
+        flags = gg.TYPE_BYTE
+      }
+    end
+    SaveOFF[b] = gg.getValues(Z)
+  end
+  
+  local R = getValues(lib, b, #Hex)
+  
+  if R[1].value == V[1] and R[3].value == V[3] then
+    gg.setValues(SaveOFF[b])
+  else
+    setValues(lib, b, V)
+  end
+end
+
 function setvalue(address,flags,value) 
 local tt={} tt[1]={} tt[1].address=address tt[1].flags=flags tt[1].value=value 
 gg.setValues(tt) end local n, startAddress, endAddress = nil, 0, 0 local function name(lib) if n == lib then return startAddress, endAddress end local ranges = gg.getRangesList(lib or 'libil2cpp.so') for i, v in ipairs(ranges) do if v.state == "Xa" then startAddress = v.start endAddress = ranges[#ranges]['end'] break end end return startAddress, endAddress end local function SetValue(libname, offset, hex) name(libname) local t, total = {}, 0 for h in string.gmatch(hex, "%S%S") do  table.insert(t, { address = startAddress + offset + total,flags = gg.TYPE_BYTE,value = h .. "r"    }) total = total + 1 end local res = gg.setValues(t) if type(res) ~= 'string' then return true else gg.alert(res) return false end end
