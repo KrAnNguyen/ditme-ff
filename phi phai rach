@@ -200,6 +200,43 @@ SetValue("libil2cpp.so", 0x2e3db70, "00 00 80 D2 C0 03 5F D6")
 SetValue("libil2cpp.so", 0x2e3a388, "00 00 80 D2 C0 03 5F D6")
 SetValue("libil2cpp.so", 0x2e3b050, "00 00 80 D2 C0 03 5F D6")
 SetValue("libil2cpp.so", 0x2e3a18c, "00 00 80 D2 C0 03 5F D6")
+
+gg.setVisible(false)
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKDelReportData3", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKDelReportData4", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKFree", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKGetReportData3", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKGetReportData4", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKSetUserInfoWithLicense", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":AnoSDKDelReportData", gg.TYPE_BYTE)
+gg.getResults(100)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
 gg.toast("Bypass loaded!")
 function script()
 main = gg.choice({
@@ -209,6 +246,7 @@ F.."Nhảy Dù Nhanh 🪂",
 "Menu Aim🎯",
 "Menu Định vị📡",
 "Menu Bạo⛔",
+"Bypass Full (Beta)",
 "Thoát Script",
 },nil,' Phát triển bởi @hnlsm [Telegram] ')
 if main == nil then gg.toast('HNhat') else
@@ -218,8 +256,9 @@ if main == 3 then emote() end
 if main == 4 then aim() end
 if main == 5 then esp() end
 if main == 6 then risk() end
-if main == 7 then thoat() end
-if main == 8 then gg.setVisible(true) os.exit(print('HNhat')) end
+if main == 7 then bypass() end
+if main == 8 then thoat() end
+if main == 9 then gg.setVisible(true) os.exit(print('HNhat')) end
 end end
 G = " OFF "
 function speed()
@@ -484,6 +523,8 @@ m = gg.multiChoice({
 'Nhẹ tâm (Sảnh/Đăng nhập)',
 'Headshot mỗi bụng (Trong trận)',
 'Magic Bullet (Sảnh/Đăng nhập)',
+'Headshot cu (Đăng nhập)',
+'Headshot dang tay (Đăng nhập)',
 'Quay về',
 })
 if m == nil then gg.toast('HNhat') else
@@ -492,7 +533,9 @@ if m [2] then fastsw() end
 if m [3] then nhead() end
 if m [4] then hsb() end
 if m [5] then magic() end
-if m [6] then gg.setVisible(true) end
+if m [6] then hscu() end
+if m [7] then hsbody() end
+if m [8] then gg.setVisible(true) end
 end end
 function awm()
 gg.setRanges(gg.REGION_ANONYMOUS)
@@ -566,6 +609,42 @@ gg.clearResults()
 gg.searchNumber("h1000000062006F006E0065005F004C006500660074005F0057006500610070006F006E00", 1)
 gg.getResults(gg.getResultsCount())
 gg.editAll("h1000000062006F006E0065005F005300700069006E006500000000000000000000000000", 1)
+gg.clearResults()
+gg.toast("Xong ✅")
+end
+function hscu()
+gg.setRanges(gg.REGION_ANONYMOUS)
+  gg.searchNumber("1065353216;96688289;1;", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+  gg.processResume()
+  gg.refineNumber("96688289", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+  gg.getResults(52000)
+  gg.editAll("2018908708", gg.TYPE_DWORD)
+  gg.clearResults()
+  gg.toast("Xong ✅")
+  end
+function hsbody()
+gg.setRanges(gg.REGION_ANONYMOUS)
+gg.searchNumber(';bone_Spine')
+gg.getResults(gg.getResultsCount())
+gg.editAll(';bone_Head1', gg.TYPE_WORD)
+gg.clearResults()
+gg.searchNumber('-0.04462028295', gg.TYPE_FLOAT)
+gg.getResults(gg.getResultsCount())
+gg.editAll('-0.03999999911', gg.TYPE_FLOAT)
+gg.clearResults()
+gg.searchNumber('-0.03881515563', gg.TYPE_FLOAT)
+gg.getResults(gg.getResultsCount())
+gg.editAll('0.05000000075', gg.TYPE_FLOAT)
+gg.clearResults()
+gg.searchNumber('0.07869631797;0.99689865112;1;1;1::17', gg.TYPE_FLOAT)
+gg.refineNumber('1', gg.TYPE_FLOAT)
+gg.getResults(gg.getResultsCount())
+gg.editAll('-1.5', gg.TYPE_FLOAT)
+gg.clearResults()
+gg.searchNumber('0.98958933353F;1;1;1::17', gg.TYPE_FLOAT)
+gg.refineNumber('1', gg.TYPE_FLOAT)
+gg.getResults(gg.getResultsCount())
+gg.editAll('-1.5', gg.TYPE_FLOAT)
 gg.clearResults()
 gg.toast("Xong ✅")
 end
@@ -712,6 +791,14 @@ gg.getResults(2)
 gg.editAll("1;1.9", gg.TYPE_FLOAT)
 gg.clearResults()
 gg.toast('Xong ✅')
+end
+function bypass()
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber(":Report", gg.TYPE_BYTE)
+gg.getResults(9999)
+gg.editAll("0", gg.TYPE_BYTE)
+gg.clearResults()
+gg.toast("Xong ✅")
 end
 function thoat()
   print("Goodbye see you later")
